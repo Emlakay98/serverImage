@@ -22,6 +22,6 @@ require("../services/default")(app);
 //servidor
 
 http.createServer(/* OPTION_SERVER, */ app).listen(18001,()=>{
-    console.log("el servidor está corriendo de manera insegura en el servidor 18001")
+    console.log("Ejecutando servidor http: 18001")
     console.log('\n')
 })

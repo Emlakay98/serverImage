@@ -59,5 +59,41 @@ class ProcessImage {
             }
         })
     }
+
+    processTransformImage(file){
+        return new Promise (async (resolve, reject) => {
+            try {
+
+                let buff = await this.encodeBase64(file)
+
+                let target = './src/buffs/' + 'archivo.txt'
+                
+                fs.writeFile(target, buff, (err) => {
+                    if (err) console.log(err)
+                })
+
+                return resolve (response.success('Se ha convertido la imagen a buffer'))
+
+            } catch (error) {
+                console.log(error)
+                return reject (response.process('Algo salió mal'))
+            }
+        })
+    }
+
+    encodeBase64(file){
+        return new Promise (async (resolve, reject) => {
+            try {
+                
+                let buffedFile = file.buffer.toString('base64')
+
+                return resolve (buffedFile)
+
+            } catch (error) {
+                console.log(error)
+                return reject (response.process('Ocurrió un error'))
+            }
+        })
+    }
 }
 module.exports = ProcessImage
